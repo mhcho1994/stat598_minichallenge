@@ -1,0 +1,8 @@
+# do not commit data and images
+ws/data/
+ws/images/
+ws/labels/
+ws/train_results/
+
+# jupyternotebook files
+ws/src/.ipynb_checkpoints/

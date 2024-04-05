@@ -1,0 +1,27 @@
+# yaml file to create the docker with the specified options
+version: "3.9"
+
+services:
+  # container w/ python, tensorflow, jupyter, and other dependencies
+  tensorflow-gpu-jupyter:
+    container_name: challenge
+    hostname: challenge
+    image: tensorflow/tensorflow:2.5.0-gpu-jupyter
+    environment:
+    - DISPLAY=${DISPLAY}
+    ports:
+    - "8888:8888"
+    volumes:
+    - /tmp/.X11-unix:/tmp/.X11-unix:ro
+    - ./ws:/tf/ws:rw
+    privileged: true
+    stdin_open: true 
+    tty: true     
+    ipc: host
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
